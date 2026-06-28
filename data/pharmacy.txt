@@ -1,0 +1,10 @@
+Doliprane,500mg,120,Mauripharma,2026-12-01,Nouakchott
+Doliprane,1000mg,200,Central Pharmacy,2025-10-10,Nouakchott
+Paracetamol,500mg,100,Pharmacie Al Amal,2027-01-01,Rosso
+Ibuprofen,200mg,150,Pharma City,2026-06-30,Nouakchott
+Paracetamol,1000mg,180,Central Pharmacy,2026-08-15,Nouakchott
+Aspirin,500mg,90,Mauripharma,2027-03-20,Nouakchott
+Ibuprofen,400mg,160,Pharmacie Atar,2026-11-15,Atar
+Amoxicilline,500mg,250,Mauripharma,2027-02-28,Nouakchott
+Augmentin,625mg,380,Central Pharmacy,2026-09-10,Nouakchott
+Amoxicilline,1000mg,420,Pharma City,2027-05-20,Nouakchott

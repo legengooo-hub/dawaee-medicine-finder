@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dawaee | دوائي - Find medicine. Fast. Near you.</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <h1>Dawaee | دوائي</h1>
+                <p class="tagline">Find medicine. Fast. Near you.</p>
+            </div>
+            <div class="navbar-menu">
+                <a href="#search" class="nav-link">Recherche</a>
+                <a href="#pharmacy" class="nav-link">Pharmacies</a>
+                <a href="#comparison" class="nav-link">Comparaison</a>
+                <a href="#about" class="nav-link">À propos</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Trouvez vos médicaments en quelques secondes</h2>
+                <p>La plateforme la plus rapide pour localiser et comparer les médicaments en Mauritanie</p>
+                <button class="btn btn-primary" onclick="scrollToSearch()">Commencer</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Section Recherche -->
+        <section id="search" class="section search-section">
+            <h2>🔍 Rechercher un Médicament</h2>
+            <div class="search-box">
+                <input type="text" id="medicineSearch" class="search-input" placeholder="Entrez le nom du médicament (ex: Doliprane, Ibuprofen)...">
+                <button class="btn btn-search" onclick="searchMedicine()">Rechercher</button>
+            </div>
+            <div id="searchResults" class="results-container"></div>
+        </section>
+
+        <!-- Section Pharmacies -->
+        <section id="pharmacy" class="section pharmacy-section">
+            <h2>🏥 Pharmacies Proches</h2>
+            <div class="filters">
+                <label>Sélectionnez une région (Wilaya):</label>
+                <select id="wilayas" class="filter-select" onchange="filterPharmacies()">
+                    <option value="">-- Toutes les régions --</option>
+                    <option value="Nouakchott">Nouakchott</option>
+                    <option value="Atar">Atar (Adrar)</option>
+                    <option value="Chinguetti">Chinguetti</option>
+                    <option value="Tidjikja">Tidjikja (Tagant)</option>
+                    <option value="Kaedi">Kaedi (Gorgol)</option>
+                    <option value="Aioun">Aioun (Hodh El Gharbia)</option>
+                    <option value="Nema">Néma (Hodh Ech Chargui)</option>
+                    <option value="Rosso">Rosso (Trarza)</option>
+                    <option value="Boutilimit">Boutilimit (Brakna)</option>
+                </select>
+            </div>
+            <div id="pharmacyList" class="pharmacy-list"></div>
+        </section>
+
+        <!-- Section Comparaison de Prix -->
+        <section id="comparison" class="section comparison-section">
+            <h2>💰 Comparaison des Prix</h2>
+            <div class="comparison-box">
+                <input type="text" id="compareInput" class="search-input" placeholder="Entrez le nom du médicament à comparer...">
+                <button class="btn btn-search" onclick="comparePrices()">Comparer</button>
+            </div>
+            <div id="comparisonResults" class="results-container"></div>
+        </section>
+
+        <!-- Section Pharmacies de Garde -->
+        <section id="onDuty" class="section duty-section">
+            <h2>🌙 Pharmacies de Garde</h2>
+            <button class="btn btn-primary" onclick="showOnDutyPharmacies()">Afficher les pharmacies ouvertes</button>
+            <div id="onDutyList" class="pharmacy-list"></div>
+        </section>
+
+        <!-- Section Alertes de Péremption -->
+        <section id="expiration" class="section expiration-section">
+            <h2>⚠️ Alertes de Péremption</h2>
+            <p class="info-text">Médicaments proches de la date d'expiration (dans 30 jours)</p>
+            <button class="btn btn-warning" onclick="checkExpirations()">Vérifier les péremptions</button>
+            <div id="expirationList" class="results-container"></div>
+        </section>
+
+        <!-- Section Alternatives -->
+        <section id="alternatives" class="section alternatives-section">
+            <h2>🔄 Alternatives de Médicaments</h2>
+            <div class="search-box">
+                <input type="text" id="altSearch" class="search-input" placeholder="Recherchez des alternatives...">
+                <button class="btn btn-search" onclick="findAlternatives()">Trouver alternatives</button>
+            </div>
+            <div id="alternativesList" class="results-container"></div>
+        </section>
+
+        <!-- Section Évaluations -->
+        <section id="ratings" class="section ratings-section">
+            <h2>⭐ Évaluations des Pharmacies</h2>
+            <div class="rating-box">
+                <div class="rating-form">
+                    <input type="text" id="pharmacyName" class="search-input" placeholder="Nom de la pharmacie...">
+                    <div class="star-rating">
+                        <span class="star" onclick="setRating(1)">★</span>
+                        <span class="star" onclick="setRating(2)">★</span>
+                        <span class="star" onclick="setRating(3)">★</span>
+                        <span class="star" onclick="setRating(4)">★</span>
+                        <span class="star" onclick="setRating(5)">★</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="submitRating()">Soumettre l'évaluation</button>
+                </div>
+            </div>
+            <div id="ratingsList" class="results-container"></div>
+        </section>
+
+        <!-- Section À propos -->
+        <section id="about" class="section about-section">
+            <h2>ℹ️ À propos de Dawaee</h2>
+            <div class="about-content">
+                <h3>Mission</h3>
+                <p>Dawaee est une application créée pour faciliter l'accès aux médicaments en Mauritanie en offrant une plateforme rapide, fiable et user-friendly.</p>
+                
+                <h3>Fonctionnalités principales</h3>
+                <ul>
+                    <li>✓ Recherche rapide de médicaments</li>
+                    <li>✓ Localisation des pharmacies par région</li>
+                    <li>✓ Comparaison des prix en temps réel</li>
+                    <li>✓ Alertes de péremption automatiques</li>
+                    <li>✓ Suggestions d'alternatives médicamenteuses</li>
+                    <li>✓ Pharmacies de garde disponibles</li>
+                    <li>✓ Système d'évaluation des pharmacies</li>
+                </ul>
+                
+                <h3>Projet Universitaire</h3>
+                <p>Développé comme projet de démonstration des concepts fondamentaux en programmation C, incluant la gestion mémoire, les fichiers, et les algorithmes.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Dawaee | دوائي - Find medicine. Fast. Near you.</p>
+            <p class="footer-note">Projet universitaire - Conçu comme démonstration éducative</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
